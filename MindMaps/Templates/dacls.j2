@@ -1,0 +1,8 @@
+# Downloadable Access Control Lists
+{%- for dacl in dacl %}
+## {{ dacl.DownloadableAcl.name }}
+### ID: {{ dacl.DownloadableAcl.id }}
+### Description: {{ dacl.DownloadableAcl.description }}
+### DACL: {{ dacl.DownloadableAcl.dacl }}
+### DACL Type: {{ dacl.DownloadableAcl.daclType }}
+{%- endfor %}

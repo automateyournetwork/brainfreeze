@@ -1,0 +1,43 @@
+# Active Directory
+{%- for directory in activeDirectory %}
+## Name: {{ directory.ERSActiveDirectory.name }}
+### Active Directory Scope Name: {{ directory.ERSActiveDirectory.adScopesNames }}
+### ID: {{ directory.ERSActiveDirectory.id }}
+### Description: {{ directory.ERSActiveDirectory.description }}
+### Domain: {{ directory.ERSActiveDirectory.domain }}
+### Enable Domain Allowed List: {{ directory.ERSActiveDirectory.enableDomainAllowedList }}
+### Groups
+{%-     for group in directory.ERSActiveDirectory.adgroups.groups %}
+#### {{ group.name }}
+##### SID: {{ group.sid }}
+{%-     endfor %}
+### Advanced Settings
+#### Enable Password Change: {{ directory.ERSActiveDirectory.advancedSettings.enablePassChange }}
+#### Enable Machine Authentication: {{ directory.ERSActiveDirectory.advancedSettings.enableMachineAuth }}
+#### Enable Machine Access: {{ directory.ERSActiveDirectory.advancedSettings.enableMachineAccess }}
+#### Aging Time: {{ directory.ERSActiveDirectory.advancedSettings.agingTime }}
+#### Enable Dial-In Permission Check: {{ directory.ERSActiveDirectory.advancedSettings.enableDialinPermissionCheck }}
+#### Enable Callback for Dial-In Client: {{ directory.ERSActiveDirectory.advancedSettings.enableCallbackForDialinClient }}
+#### Plain Text Authentication: {{ directory.ERSActiveDirectory.advancedSettings.plaintextAuth }}
+#### Identity Not In Active Directory Behavior: {{ directory.ERSActiveDirectory.advancedSettings.identityNotInAdBehaviour }}
+#### Unreachable Domain Behavior: {{ directory.ERSActiveDirectory.advancedSettings.unreachableDomainsBehaviour }}
+#### Enable Rewrites: {{ directory.ERSActiveDirectory.advancedSettings.enableRewrites }}
+{%-     for rule in directory.ERSActiveDirectory.advancedSettings.rewriteRules %}
+##### Row ID: {{ rule.rowId }}
+##### Rewrite Match: {{ rule.rewriteMatch }}
+##### Rewrite Result: {{ rule.rewriteResult }}
+{%-     endfor %}
+### Contact Information
+#### First Name: {{ directory.ERSActiveDirectory.advancedSettings.firstName }}
+#### Last Name: {{ directory.ERSActiveDirectory.advancedSettings.lastName }}
+#### Department: {{ directory.ERSActiveDirectory.advancedSettings.department }}
+#### Organizational Unit: {{ directory.ERSActiveDirectory.advancedSettings.organizationalUnit }}
+#### Job Title: {{ directory.ERSActiveDirectory.advancedSettings.jobTitle }}
+#### Locality: {{ directory.ERSActiveDirectory.advancedSettings.locality }}
+#### E-mail: {{ directory.ERSActiveDirectory.advancedSettings.email }}
+#### State / Province: {{ directory.ERSActiveDirectory.advancedSettings.stateOrProvince }}
+#### Telephone: {{ directory.ERSActiveDirectory.advancedSettings.telephone }}
+#### Country: {{ directory.ERSActiveDirectory.advancedSettings.country }}
+#### Street Address: {{ directory.ERSActiveDirectory.advancedSettings.streetAddress }}
+#### Schema: {{ directory.ERSActiveDirectory.advancedSettings.schema }}
+{%- endfor %}

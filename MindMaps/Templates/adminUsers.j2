@@ -1,0 +1,12 @@
+# Administrators
+{%- for admin in adminUsersDetails %}
+## {{ admin.AdminUser.name }}
+### ID: {{ admin.AdminUser.id }}
+### Description: {{ admin.AdminUser.description }}
+### Enabled: {{ admin.AdminUser.enabled }}
+### Change Password: {{ admin.AdminUser.changePassword }}
+### Include System Alarms In Email: {{ admin.AdminUser.includeSystemAlarmsInEmail }}
+### External User: {{ admin.AdminUser.externalUser }}
+### Inactive Account Never Disabled: {{ admin.AdminUser.inactiveAccountNeverDisabled }}
+### Admin Groups: {{ admin.AdminUser.adminGroups }}
+{%- endfor %}

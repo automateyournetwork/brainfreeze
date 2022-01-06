@@ -1,0 +1,22 @@
+# Allowed Protocols
+{%- for resource in allowedProtocolsDetails %}
+## Name: {{ resource.AllowedProtocols.name }}
+### ID: {{ resource.AllowedProtocols.id }}
+### Description: {{ resource.AllowedProtocols.description }}
+#### Process Host Lookup: {{ resource.AllowedProtocols.processHostLookup }}
+#### Allow PAP ASCII: {{ resource.AllowedProtocols.allowPapAscii }}
+#### Allow CHAP: {{ resource.AllowedProtocols.allowChap }}
+#### Allow MS CHAPv1: {{ resource.AllowedProtocols.allowMsChapV1 }}
+#### Allow MS CHAPv2: {{ resource.AllowedProtocols.allowMsChapV2 }}
+#### Allow EAP MD5: {{ resource.AllowedProtocols.allowEapMd5 }}
+#### Allow LEAP: {{ resource.AllowedProtocols.allowLeap }}
+#### Allow EAP-TLS: {{ resource.AllowedProtocols.allowEapTls }}
+#### Allow EAP-TTLS: {{ resource.AllowedProtocols.allowEapTtls }}
+#### Allow EAP-FAST: {{ resource.AllowedProtocols.allowEapFast }}
+#### Allow PEAP: {{ resource.AllowedProtocols.allowPeap }}
+#### Allow TEAP: {{ resource.AllowedProtocols.allowTeap }}
+#### Allow Preferred EAP: {{ resource.AllowedProtocols.allowPreferredEapProtocol }}
+#### EAP-TLS Bit: {{ resource.AllowedProtocols.eapTlsLBit }}
+#### Allow Weak EAP Ciphers: {{ resource.AllowedProtocols.allowWeakCiphersForEap }}
+#### Require Message Authentication: {{ resource.AllowedProtocols.requireMessageAuth }}
+{%- endfor %}

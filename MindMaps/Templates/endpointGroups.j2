@@ -1,0 +1,7 @@
+# Endpoint Groups
+{%- for group in endpointGroup %}
+## {{ group.EndPointGroup.name }}
+### ID: {{ group.EndPointGroup.id }}
+### Description: {{ group.EndPointGroup.description }}
+### System Defined: {{ group.EndPointGroup.systemDefined }}
+{%- endfor %}

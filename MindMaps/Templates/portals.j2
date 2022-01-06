@@ -1,0 +1,272 @@
+# Portals
+{%- for portal in portal %}
+## {{ portal.ERSPortal.name }}
+### ID: {{ portal.ERSPortal.id }}
+### Description: {{ portal.ERSPortal.description }}
+### Allow Sponsor To Change Own Password: {{ portal.ERSPortal.allowSponsorToChangeOwnPassword }}
+### Guest User Field List
+{%-     for field in portal.ERSPortal.guestUserFieldList %}
+#### {{ field.labelName }}
+##### Data Type: {{ field.dataType }}
+##### Required: {{ field.required }}
+##### Dictionary Label Key: {{ field.dictionaryLabelKey }}
+##### Custom Type: {{ field.customType }}
+{%-     endfor %}
+### Portal Type: {{ portal.ERSPortal.portalType }}
+{%- endfor %}
+## Self-Registration
+{%- for portal in selfRegPortal %}
+### {{ portal.SelfRegPortal.name }}
+#### ID: {{ portal.SelfRegPortal.id }}
+#### Description: {{ portal.SelfRegPortal.description }}
+#### Portal Type: {{ portal.SelfRegPortal.portalType }}
+#### [Portal Test URL]({{ portal.SelfRegPortal.portalTestUrl }})
+#### HTTPS Port: {{ portal.SelfRegPortal.settings.portalSettings.httpsPort }}
+#### Allowed Interface
+{%-     for interface in portal.SelfRegPortal.settings.allowedInterfaces %}
+##### {{ interface }}
+{%-     endfor %}
+#### Cetificate Group Tag: {{ portal.SelfRegPortal.settings.portalSettings.certificateGroupTag }}
+#### Authentication Method: {{ portal.SelfRegPortal.settings.portalSettings.authenticationMethod }}
+#### Assigned Guest Type For Employee: {{ portal.SelfRegPortal.settings.portalSettings.assignedGuestTypeForEmployee }}
+#### Language
+##### Display Language: {{ portal.SelfRegPortal.settings.portalSettings.displayLang }}
+##### Fallback Language: {{ portal.SelfRegPortal.settings.portalSettings.fallbackLanguage }}
+##### Always Used Language: {{ portal.SelfRegPortal.settings.portalSettings.alwaysUsedLanguage }}
+#### Require Access Code: {{ portal.SelfRegPortal.settings.loginPageSettings.requireAccessCode }}
+#### Rate Limit
+##### Max Failed Attempts Before Rate Limit: {{ portal.SelfRegPortal.settings.loginPageSettings.maxFailedAttemptsBeforeRateLimit }}
+##### Time Between Logins During Rate Limit: {{ portal.SelfRegPortal.settings.loginPageSettings.timeBetweenLoginsDuringRateLimit }}
+#### Include AUP: {{ portal.SelfRegPortal.settings.loginPageSettings.includeAup }}
+#### Permissions
+##### Allowed Guest To Create Accounts: {{ portal.SelfRegPortal.settings.loginPageSettings.allowGuestToCreateAccounts }}
+##### Allowed Forgot Password: {{ portal.SelfRegPortal.settings.loginPageSettings.allowForgotPassword }}
+##### Allowed Guest to Change Password: {{ portal.SelfRegPortal.settings.loginPageSettings.allowGuestToChangePassword }}
+##### Allowed Alternate Guest Portal: {{ portal.SelfRegPortal.settings.loginPageSettings.allowAlternateGuestPortal }}
+#### Assign Guest to Guest Type: {{ portal.SelfRegPortal.settings.selfRegPageSettings.assignGuestsToGuestType }}
+#### Account Validity Duration: {{ portal.SelfRegPortal.settings.selfRegPageSettings.accountValidityDuration }}
+#### Required Registration Code: {{ portal.SelfRegPortal.settings.selfRegPageSettings.requireRegistrationCode }}
+#### Required Fields
+##### Username Required: {{ portal.SelfRegPortal.settings.selfRegPageSettings.fieldUserName.require }}
+##### First Name Required: {{ portal.SelfRegPortal.settings.selfRegPageSettings.fieldFirstName.require }}
+##### Last Name Required: {{ portal.SelfRegPortal.settings.selfRegPageSettings.fieldLastName.require }}
+##### E-Mail Required: {{ portal.SelfRegPortal.settings.selfRegPageSettings.fieldEmailAddr.require }}
+##### Phone Number Required: {{ portal.SelfRegPortal.settings.selfRegPageSettings.fieldPhoneNo.require }}
+##### Company Required: {{ portal.SelfRegPortal.settings.selfRegPageSettings.fieldCompany.require }}
+##### Location Required: {{ portal.SelfRegPortal.settings.selfRegPageSettings.fieldLocation.require }}
+{%-     for location in portal.SelfRegPortal.settings.selfRegPageSettings.selectableLocations %}
+##### Selectable Location: {{ location }}
+{%-     endfor %}
+##### SMS Provider Required: {{ portal.SelfRegPortal.settings.selfRegPageSettings.fieldSmsProvider.require }}
+{%-     for sms in portal.SelfRegPortal.settings.selfRegPageSettings.selectableSmsProviders %}
+##### Selectable SMS Provider: {{ sms }}
+{%-     endfor %}
+##### Person Being Visited: {{ portal.SelfRegPortal.settings.selfRegPageSettings.fieldPersonBeingVisited.require }}
+##### Reason for Visit: {{ portal.SelfRegPortal.settings.selfRegPageSettings.fieldReasonForVisit.require }}
+#### Include AUP: {{ portal.SelfRegPortal.settings.selfRegPageSettings.includeAup }}
+#### Require AUP Acceptance: {{ portal.SelfRegPortal.settings.selfRegPageSettings.requireAupAcceptance }}
+#### Guest Email
+##### Enable Guest E-Mail Whitelist: {{ portal.SelfRegPortal.settings.selfRegPageSettings.enableGuestEmailWhitelist }}
+##### Guest E-Mail Blacklist: {{ portal.SelfRegPortal.settings.selfRegPageSettings.enableGuestEmailBlacklist }}
+#### Require Guest Approval: {{ portal.SelfRegPortal.settings.selfRegPageSettings.requireGuestApproval }}
+#### Auto Login
+##### Auto Login Self Wait: {{ portal.SelfRegPortal.settings.selfRegPageSettings.autoLoginSelfWait }}
+##### Auto Login Period: {{ portal.SelfRegPortal.settings.selfRegPageSettings.autoLoginTimePeriod }}
+#### Grace Access
+##### Allow Grace Access: {{ portal.SelfRegPortal.settings.selfRegPageSettings.allowGraceAccess }}
+##### Grace Access Expire Interval: {{ portal.SelfRegPortal.settings.selfRegPageSettings.graceAccessExpireInterval }}
+##### Grace Account Expire Notification: {{ portal.SelfRegPortal.settings.selfRegPageSettings.graceAccessSendAccountExpiration }}
+#### POST Registration Redirect: {{ portal.SelfRegPortal.settings.selfRegPageSettings.postRegistrationRedirect }}
+#### Credential Notification
+##### E-Mail: {{ portal.SelfRegPortal.settings.selfRegPageSettings.credentialNotificationUsingEmail }}
+##### SMS: {{ portal.SelfRegPortal.settings.selfRegPageSettings.credentialNotificationUsingSms }}
+#### Link Time Units: {{ portal.SelfRegPortal.settings.selfRegPageSettings.approveDenyLinksTimeUnits }}
+#### Authenticate Sponsors Using Portal List: {{ portal.SelfRegPortal.settings.selfRegPageSettings.authenticateSponsorsUsingPortalList }}
+#### Sponsor Portal List
+{%-     for portal in portal.SelfRegPortal.settings.selfRegPageSettings.sponsorPortalList %}
+##### {{ portal }}
+{%-     endfor%}
+### Success
+#### Include
+##### Username: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.includeUserName }}
+##### Password: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.includePassword }}
+##### First Name: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.includeFirstName }}
+##### Last Name: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.includeLastName }}
+##### E-Mail: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.includeEmailAddr }}
+##### Phone Number: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.includePhoneNo }}
+##### Company: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.includeCompany }}
+##### Location: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.includeLocation }}
+##### SMS Provider: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.includeSmsProvider }}
+##### Person Being Visited: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.includePersonBeingVisited }}
+##### Reason for Visit: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.includeReasonForVisit }}
+##### AUP: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.includeAup }}
+#### Allow
+##### Guest Send Self Using Print: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.allowGuestSendSelfUsingPrint }}
+##### Guest Send Self Using E-Mail: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.allowGuestSendSelfUsingEmail }}
+##### Guest Send Self Using SMS: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.allowGuestSendSelfUsingSms }}
+##### Guest Login From Self Registration Page: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.allowGuestLoginFromSelfregSuccessPage }}
+#### Acceptable Use Policy
+##### AUP On Page: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.aupOnPage }}
+##### AUP Acceptance: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.requireAupAcceptance }}
+##### AUP Scrolling: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.requireAupScrolling }}
+### Acceptable Use Policy
+#### Include: {{ portal.SelfRegPortal.settings.aupSettings.includeAup }}
+#### Require Scrolling: {{ portal.SelfRegPortal.settings.aupSettings.requireScrolling }}
+#### Display Frequency: {{ portal.SelfRegPortal.settings.aupSettings.displayFrequency }}
+### Guest Settings
+#### Allow Password Change At First Login: {{ portal.SelfRegPortal.settings.guestChangePasswordSettings.allowChangePasswdAtFirstLogin }}
+#### Auto Register Guest Devices: {{ portal.SelfRegPortal.settings.guestDeviceRegistrationSettings.autoRegisterGuestDevices }}
+#### Allow Guest To Register Devices: {{ portal.SelfRegPortal.settings.guestDeviceRegistrationSettings.allowGuestsToRegisterDevices }}
+### Bring Your Own Device
+#### Welcome Settings
+##### Enable BYOD: {{ portal.SelfRegPortal.settings.byodSettings.byodWelcomeSettings.enableBYOD }}
+##### Enable Guest Access: {{ portal.SelfRegPortal.settings.byodSettings.byodWelcomeSettings.enableGuestAccess }}
+##### Require MDM: {{ portal.SelfRegPortal.settings.byodSettings.byodWelcomeSettings.requireMDM }}
+#### AUP
+##### Include: {{ portal.SelfRegPortal.settings.byodSettings.byodWelcomeSettings.includeAup }}
+##### Display: {{ portal.SelfRegPortal.settings.byodSettings.byodWelcomeSettings.aupDisplay }}
+##### Require Acceptance: {{ portal.SelfRegPortal.settings.byodSettings.byodWelcomeSettings.requireAupAcceptance }}
+##### Require Scrolling: {{ portal.SelfRegPortal.settings.byodSettings.byodWelcomeSettings.requireScrolling }}
+#### Registration Settings
+##### Show Device ID: {{ portal.SelfRegPortal.settings.byodSettings.byodRegistrationSettings.showDeviceID }}
+##### Endpoint Identity Group ID: {{ portal.SelfRegPortal.settings.byodSettings.byodRegistrationSettings.endPointIdentityGroupId }}
+#### Success Settings
+##### Redirect: {{ portal.SelfRegPortal.settings.byodSettings.byodRegistrationSuccessSettings.successRedirect }}
+### Post Login
+#### Include Banner: {{ portal.SelfRegPortal.settings.postLoginBannerSettings.includePostAccessBanner }}
+#### Success Redirect: {{ portal.SelfRegPortal.settings.authSuccessSettings.successRedirect }}
+### Support Information Include
+#### Support Info Page: {{ portal.SelfRegPortal.settings.supportInfoSettings.includeSupportInfoPage }}
+#### MAC Address: {{ portal.SelfRegPortal.settings.supportInfoSettings.includeMacAddr }}
+#### IP Address: {{ portal.SelfRegPortal.settings.supportInfoSettings.includeIpAddress }}
+#### Browser User Agent: {{ portal.SelfRegPortal.settings.supportInfoSettings.includeBrowserUserAgent }}
+#### Policy Server: {{ portal.SelfRegPortal.settings.supportInfoSettings.includePolicyServer }}
+#### Failure Code: {{ portal.SelfRegPortal.settings.supportInfoSettings.includeFailureCode }}
+#### Empty Field: {{ portal.SelfRegPortal.settings.supportInfoSettings.emptyFieldDisplay }}
+### Customizations
+#### Portal Theme
+##### {{ portal.SelfRegPortal.customizations.portalTheme.name }}
+##### ID: {{ portal.SelfRegPortal.customizations.portalTheme.id }}
+#### Language: {{ portal.SelfRegPortal.customizations.language.viewLanguage }}
+#### Banner Title: {{ portal.SelfRegPortal.customizations.globalCustomizations.bannerTitle }}
+#### Contact: {{ portal.SelfRegPortal.customizations.globalCustomizations.contactText }}
+#### Footer: {{ portal.SelfRegPortal.customizations.globalCustomizations.footerElement }}
+{%- endfor%}
+## Sponsor
+{%- for portal in sponsorPortal %}
+### {{ portal.SponsorPortal.name }}
+#### ID: {{ portal.SponsorPortal.id }}
+#### Description: {{ portal.SponsorPortal.description }}
+#### Portal Type: {{ portal.SponsorPortal.portalType }}
+#### [Test URL]({{ portal.SponsorPortal.portalTestUrl }})
+#### Portal Settings
+##### HTTPS Port: {{ portal.SponsorPortal.settings.portalSettings.httpsPort }}
+{%-     for interface in portal.SponsorPortal.settings.portalSettings.allowedInterfaces %}
+##### Allowed Interface: {{ portal.SponsorPortal.settings.portalSettings.allowedInterfaces }}
+{%-     endfor%}
+##### Certificate Group Tage: {{ portal.SponsorPortal.settings.portalSettings.certificateGroupTag }}
+##### Authentication Method: {{ portal.SponsorPortal.settings.portalSettings.authenticationMethod }}
+##### Idle Timeout: {{ portal.SponsorPortal.settings.portalSettings.idleTimeout }}
+##### Display Language: {{ portal.SponsorPortal.settings.portalSettings.displayLang }}
+##### Fallback Language: {{ portal.SponsorPortal.settings.portalSettings.fallbackLanguage }}
+##### Always Used Language: {{ portal.SponsorPortal.settings.portalSettings.alwaysUsedLanguage }}
+{%-     for ssid in portal.SponsorPortal.settings.portalSettings.availableSsids %}
+##### Available SSID: {{ portal.SponsorPortal.settings.portalSettings.availableSsids }}
+{%-     endfor%}
+#### Login Page
+##### Max Failed Attempts Before Rate Limit: {{ portal.SponsorPortal.settings.loginPageSettings.maxFailedAttemptsBeforeRateLimit }}
+##### Time Between Logins During Rate Limit: {{ portal.SponsorPortal.settings.loginPageSettings.timeBetweenLoginsDuringRateLimit }}
+##### Include AUP: {{ portal.SponsorPortal.settings.loginPageSettings.includeAup }}
+##### Require AUP Scrolling: {{ portal.SponsorPortal.settings.loginPageSettings.requireAupScrolling }}
+#### Acceptable Use Policy
+##### Include: {{ portal.SponsorPortal.settings.aupSettings.includeAup }}
+##### Require Scrolling: {{ portal.SponsorPortal.settings.aupSettings.requireScrolling }}
+##### Display Frequency: {{ portal.SponsorPortal.settings.aupSettings.displayFrequency }}
+#### Sponsor Change Password
+##### Allow Sponsor to Change Password: {{ portal.SponsorPortal.settings.sponsorChangePasswordSettings.allowSponsorToChangePwd }}
+#### Post Login Banner
+##### Include POST Access: {{ portal.SponsorPortal.settings.postLoginBannerSettings.includePostAccessBanner }}
+#### Support Info
+##### Support Page: {{ portal.SponsorPortal.settings.supportInfoSettings.includeSupportInfoPage }}
+##### MAC Address: {{ portal.SponsorPortal.settings.supportInfoSettings.includeMacAddr }}
+##### IP Address: {{ portal.SponsorPortal.settings.supportInfoSettings.includeIpAddress }}
+##### Browser User Agent: {{ portal.SponsorPortal.settings.supportInfoSettings.includeBrowserUserAgent }}
+##### Policy Server: {{ portal.SponsorPortal.settings.supportInfoSettings.includePolicyServer }}
+##### Failure Code: {{ portal.SponsorPortal.settings.supportInfoSettings.includeFailureCode }}
+##### Empty Field Display: {{ portal.SponsorPortal.settings.supportInfoSettings.emptyFieldDisplay }}
+### Customizations
+#### Portal Theme
+##### Name: {{ portal.SponsorPortal.customizations.portalTheme.name }}
+##### ID: {{ portal.SponsorPortal.customizations.portalTheme.id }}
+#### Language: {{ portal.SponsorPortal.customizations.language.viewLanguage }}
+#### Banner Title: {{ portal.SponsorPortal.customizations.globalCustomizations.bannerTitle }}
+#### Contact Text: {{ portal.SponsorPortal.customizations.globalCustomizations.contactText }}
+#### Footer Element: {{ portal.SponsorPortal.customizations.globalCustomizations.footerElement }}
+{%- endfor %}
+## Sponsored Guest
+{%- for portal in sponsorGuestPortal %}
+### {{ portal.SponsoredGuestPortal.name }}
+#### ID: {{ portal.SponsoredGuestPortal.id }}
+#### Description: {{ portal.SponsoredGuestPortal.description }}
+#### Portal Type: {{ portal.SponsoredGuestPortal.portalType }}
+#### [Test URL]({{ portal.SponsoredGuestPortal.portalTestUrl }})
+#### Portal Settings
+##### HTTPS Port: {{ portal.SponsoredGuestPortal.settings.portalSettings.httpsPort }}
+{%-    for interface in portal.SponsoredGuestPortal.settings.portalSettings.allowedInterfaces %}
+##### Interface: {{ interface }}
+{%-    endfor%}
+##### Certificate Group Tag: {{ portal.SponsoredGuestPortal.settings.portalSettings.certificateGroupTag }}
+##### Authentication Method: {{ portal.SponsoredGuestPortal.settings.portalSettings.authenticationMethod }}
+##### Assigned Guest Type For Employee: {{ portal.SponsoredGuestPortal.settings.portalSettings.assignedGuestTypeForEmployee }}
+##### Display Language: {{ portal.SponsoredGuestPortal.settings.portalSettings.displayLang }}
+##### Fallback Language: {{ portal.SponsoredGuestPortal.settings.portalSettings.fallbackLanguage }}
+##### Always Used Language: {{ portal.SponsoredGuestPortal.settings.portalSettings.alwaysUsedLanguage }}
+#### Login Page Settings
+##### Required Access Code: {{ portal.SponsoredGuestPortal.settings.loginPageSettings.requireAccessCode }}
+##### Max Failed Attempts Before Rate Limit: {{ portal.SponsoredGuestPortal.settings.loginPageSettings.maxFailedAttemptsBeforeRateLimit }}
+##### Time Between Logins During Rate Limit: {{ portal.SponsoredGuestPortal.settings.loginPageSettings.timeBetweenLoginsDuringRateLimit }}
+##### Include AUP: {{ portal.SponsoredGuestPortal.settings.loginPageSettings.includeAup }}
+##### Allowed Guest to Create Accounts: {{ portal.SponsoredGuestPortal.settings.loginPageSettings.allowGuestToCreateAccounts }}
+##### Allowed Forgot Password: {{ portal.SponsoredGuestPortal.settings.loginPageSettings.allowForgotPassword }}
+##### Allowed Guest to Change Password: {{ portal.SponsoredGuestPortal.settings.loginPageSettings.allowGuestToChangePassword }}
+##### Allowed Alternative Guest Portal: {{ portal.SponsoredGuestPortal.settings.loginPageSettings.allowAlternateGuestPortal }}
+#### Acceptable Use Policy
+##### Include: {{ portal.SponsoredGuestPortal.settings.aupSettings.includeAup }}
+##### Require Scrolling: {{ portal.SponsoredGuestPortal.settings.aupSettings.requireScrolling }}
+##### Display Frequency: {{ portal.SponsoredGuestPortal.settings.aupSettings.displayFrequency }}
+#### Guest Change Password
+##### Allow Password Change at First Login: {{ portal.SponsoredGuestPortal.settings.guestChangePasswordSettings.allowChangePasswdAtFirstLogin }}
+#### Device Registration
+##### Auto Register Guest Devices: {{ portal.SponsoredGuestPortal.settings.guestDeviceRegistrationSettings.autoRegisterGuestDevices }}
+##### Allow Guest to Register Devices: {{ portal.SponsoredGuestPortal.settings.guestDeviceRegistrationSettings.allowGuestsToRegisterDevices }}
+#### Bring Your Own Device
+##### Enable: {{ portal.SponsoredGuestPortal.settings.byodSettings.byodWelcomeSettings.enableBYOD }}
+##### Enable Guest Access: {{ portal.SponsoredGuestPortal.settings.byodSettings.byodWelcomeSettings.enableGuestAccess }}
+##### Require MDM: {{ portal.SponsoredGuestPortal.settings.byodSettings.byodWelcomeSettings.requireMDM }}
+##### Include AUP: {{ portal.SponsoredGuestPortal.settings.byodSettings.byodWelcomeSettings.includeAup }}
+##### AUP Display: {{ portal.SponsoredGuestPortal.settings.byodSettings.byodWelcomeSettings.aupDisplay }}
+##### Require AUP Acceptance: {{ portal.SponsoredGuestPortal.settings.byodSettings.byodWelcomeSettings.requireAupAcceptance }}
+##### Require Scrolling: {{ portal.SponsoredGuestPortal.settings.byodSettings.byodWelcomeSettings.requireScrolling }}
+##### Show Device ID: {{ portal.SponsoredGuestPortal.settings.byodSettings.byodRegistrationSettings.showDeviceID }}
+##### Endpoint Identity Group ID: {{ portal.SponsoredGuestPortal.settings.byodSettings.byodRegistrationSettings.endPointIdentityGroupId }}
+##### Success Redirect: {{ portal.SponsoredGuestPortal.settings.byodSettings.byodRegistrationSuccessSettings.successRedirect }}
+#### Post Login Banner
+##### Include Post Access Banner: {{ portal.SponsoredGuestPortal.settings.postLoginBannerSettings.includePostAccessBanner }}
+#### Authentication Success
+##### Success Redirect: {{ portal.SponsoredGuestPortal.settings.authSuccessSettings.successRedirect }}
+#### Support Information
+##### Support Info Page: {{ portal.SponsoredGuestPortal.settings.supportInfoSettings.includeSupportInfoPage }}
+##### MAC Address: {{ portal.SponsoredGuestPortal.settings.supportInfoSettings.includeMacAddr }}
+##### IP Address: {{ portal.SponsoredGuestPortal.settings.supportInfoSettings.includeIpAddress }}
+##### Browser User Agent: {{ portal.SponsoredGuestPortal.settings.supportInfoSettings.includeBrowserUserAgent }}
+##### Policy Server: {{ portal.SponsoredGuestPortal.settings.supportInfoSettings.includePolicyServer }}
+##### Failure Code: {{ portal.SponsoredGuestPortal.settings.supportInfoSettings.includeFailureCode }}
+##### Empty Field: {{ portal.SponsoredGuestPortal.settings.supportInfoSettings.emptyFieldDisplay }}
+#### Customizations
+##### Portal Theme Name: {{ portal.SponsoredGuestPortal.customizations.portalTheme.name }}
+##### Portal Theme ID: {{ portal.SponsoredGuestPortal.customizations.portalTheme.id }}
+##### Portal Language: {{ portal.SponsoredGuestPortal.customizations.language.viewLanguage }}
+##### Banner Title: {{ portal.SponsoredGuestPortal.customizations.globalCustomizations.bannerTitle }}
+##### Contact Text: {{ portal.SponsoredGuestPortal.customizations.globalCustomizations.contactText }}
+##### Footer: {{ portal.SponsoredGuestPortal.customizations.globalCustomizations.footerElement }}
+{%- endfor %}

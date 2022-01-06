@@ -1,0 +1,43 @@
+# Sponsor Groups
+{%- for group in sponsorGroup %}
+## {{ group.SponsorGroup.name }}
+### ID: {{ group.SponsorGroup.id }}
+### Description: {{ group.SponsorGroup.description }}
+### Enabled: {{ group.SponsorGroup.isEnabled }}
+### Default: {{ group.SponsorGroup.isDefaultGroup }}
+### Member Groups
+{%-     for member in group.SponsorGroup.memberGroups %}
+#### {{ member }}
+{%-     endfor %}
+### Guest Types
+{%-     for type in group.SponsorGroup.guestTypes %}
+#### {{ type }}
+{%-     endfor %}
+### Locations
+{%-     for location in group.SponsorGroup.locations %}
+#### {{ location }}
+{%-     endfor %}
+### Auto Notification: {{ group.SponsorGroup.autoNotification }}
+### Create Permissions
+#### Import Multiple Accounts: {{ group.SponsorGroup.createPermissions.canImportMultipleAccounts }}
+#### Import Batch Size Limit: {{ group.SponsorGroup.createPermissions.importBatchSizeLimit }}
+#### Create Random Accounts: {{ group.SponsorGroup.createPermissions.canCreateRandomAccounts }}
+#### Random Batch Size Limit: {{ group.SponsorGroup.createPermissions.randomBatchSizeLimit }}
+#### Specify Username Prefix: {{ group.SponsorGroup.createPermissions.canSpecifyUsernamePrefix }}
+#### Set Future Start Date: {{ group.SponsorGroup.createPermissions.canSetFutureStartDate }}
+#### Start Date Future Limit Days: {{ group.SponsorGroup.createPermissions.startDateFutureLimitDays }}
+### Manage Permissions: {{ group.SponsorGroup.managePermission }}
+### Additonal Permissions
+#### Update Guest Contact Information: {{ group.SponsorGroup.otherPermissions.canUpdateGuestContactInfo }}
+#### View Guest Passwords: {{ group.SponsorGroup.otherPermissions.canViewGuestPasswords }}
+#### Send SMS Notifications: {{ group.SponsorGroup.otherPermissions.canSendSmsNotifications }}
+#### Reset Guest Passwords: {{ group.SponsorGroup.otherPermissions.canResetGuestPasswords }}
+#### Extend Guest Accounts: {{ group.SponsorGroup.otherPermissions.canExtendGuestAccounts }}
+#### Delete Guest Accounts: {{ group.SponsorGroup.otherPermissions.canDeleteGuestAccounts }}
+#### Suspend Guest Accounts: {{ group.SponsorGroup.otherPermissions.canSuspendGuestAccounts }}
+#### Require Suspension Reason: {{ group.SponsorGroup.otherPermissions.requireSuspensionReason }}
+#### Reinstate Suspended Accounts: {{ group.SponsorGroup.otherPermissions.canReinstateSuspendedAccounts }}
+#### Approve Self Registered Guests: {{ group.SponsorGroup.otherPermissions.canApproveSelfregGuests }}
+#### Limit Approval to Sponsored Guests: {{ group.SponsorGroup.otherPermissions.limitApprovalToSponsorsGuests }}
+#### Access Via REST: {{ group.SponsorGroup.otherPermissions.canAccessViaRest }}
+{%- endfor %}

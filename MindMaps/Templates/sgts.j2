@@ -1,0 +1,9 @@
+# SGTs 
+{%- for sgt in sgt %}
+## {{ sgt.Sgt.name }}
+### ID: {{ sgt.Sgt.id }}
+### Description: {{ sgt.Sgt.description }}
+### Value: {{ sgt.Sgt.value }}
+### Generation ID: {{ sgt.Sgt.generationId }}
+### Propogate to APIC: {{ sgt.Sgt.propogateToApic }}
+{%- endfor %}

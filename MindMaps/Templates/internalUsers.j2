@@ -1,0 +1,12 @@
+# Internal Users
+{%- for user in internalUser %}
+## {{ user.InternalUser.name }}
+### ID: {{ user.InternalUser.id }}
+### Enabled: {{ user.InternalUser.enabled }}
+### First Name: {{ user.InternalUser.firstName }}
+### Last Name: {{ user.InternalUser.lastName }}
+### Change Password: {{ user.InternalUser.changePassword }}
+### Identity Groups: {{ user.InternalUser.identityGroups }}
+### Expiry Date Enabled: {{ user.InternalUser.expiryDateEnabled }}
+### Password ID Store: {{ user.InternalUser.passwordIDStore }}
+{%- endfor %}

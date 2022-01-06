@@ -1,0 +1,27 @@
+# Network Device Groups
+{%- for group in networkDeviceGroup %}
+## {{ group.NetworkDeviceGroup.name }}
+### ID: {{ group.NetworkDeviceGroup.id }}
+### Description: {{ group.NetworkDeviceGroup.description }}
+### Other Name: {{ group.NetworkDeviceGroup.othername }}
+{%- endfor%}
+# Nodes
+{%- for node in node %}
+## {{ node.Node.name }}
+### ID: {{ node.Node.id }}
+### Display Name: {{ node.Node.displayName }}
+### Gateway: {{ node.Node.gateWay }}
+### In Deployment: {{ node.Node.inDeployment }}
+### FQDN: {{ node.Node.fqdn }}
+#### Other PAP FQDN: {{ node.Node.otherPapFqdn }}
+### IP Addresses
+#### Primary: {{ node.Node.ipAddress }}
+#### SXP: {{ node.Node.sxpIpAddress }}
+{%-     for ip in node.Node.ipAddresses %}
+#### {{ ip }}
+{%-     endfor %}
+### Node Type
+#### PAP Node: {{ node.Node.papNode }}
+##### Primary PAP Node: {{ node.Node.primaryPapNode }}
+#### pxGrid Node: {{ node.Node.pxGridNode }}
+{%- endfor %}

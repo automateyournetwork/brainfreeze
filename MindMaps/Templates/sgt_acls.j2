@@ -1,0 +1,8 @@
+# SGT ACLs
+{%- for acl in sgtacl %}
+## {{ acl.Sgacl.name }}
+### ID: {{ acl.Sgacl.id }}
+### Description: {{ acl.Sgacl.description }}
+### Generation ID: {{ acl.Sgacl.generationId }}
+### ACL Content: {{ acl.Sgacl.aclcontent }}
+{%- endfor %}

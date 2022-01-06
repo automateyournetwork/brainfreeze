@@ -1,0 +1,15 @@
+# Authorization Profiles
+{%- for profile in authorizationProfile %}
+## {{ profile.AuthorizationProfile.name }}
+### ID: {{ profile.AuthorizationProfile.id }}
+### Description: {{ profile.AuthorizationProfile.description }}
+### Access Type: {{ profile.AuthorizationProfile.accessType }}
+### AuthZ Profile Type: {{ profile.AuthorizationProfile.authzProfileType }}
+### Track Movement: {{ profile.AuthorizationProfile.trackMovement }}
+### Agentless Posture: {{ profile.AuthorizationProfile.agentlessPosture }}
+### Service Template: {{ profile.AuthorizationProfile.serviceTemplate }}
+### Easy Wired Session Candidate: {{ profile.AuthorizationProfile.easywiredSessionCandidate }}
+### Dynamic ACL Name: {{ profile.AuthorizationProfile.daclName }}
+### Voice Domain Permission: {{ profile.AuthorizationProfile.voiceDomainPermission }}
+### Profile Name: {{ profile.AuthorizationProfile.profileName }}
+{%- endfor %}

@@ -1,0 +1,7 @@
+# Identity Groups
+{%- for identity in identityGroup %}
+## {{ identity.IdentityGroup.name }}
+### ID: {{ identity.IdentityGroup.id }}
+### Description: {{ identity.IdentityGroup.description }}
+### Parent: {{ identity.IdentityGroup.parent }}
+{%- endfor %}

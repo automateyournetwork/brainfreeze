@@ -1,0 +1,638 @@
+# {{ ISE }}
+## Version
+### Device Name: {{ version.product['@name'] }}
+#### Version: {{ version.product.version }}
+#### Node Type: {{ version.product.type_of_node }}
+## Deployment Information
+### Network Access Information
+#### Deployment ID: {{ deploymentInfoJSON.networkAccessInfo.deploymentID }}
+##### TrustSec Control: {{ deploymentInfoJSON.networkAccessInfo.trustSecControl }}
+#### Node List
+{%- for node in deploymentInfoJSON.networkAccessInfo.nodeList.nodeAndScope %}
+{%-     if node == 'deployment' %}
+##### {{ node }}
+{%-     endif %}
+{%-     for item in node.content %}
+###### Name: {{ item.name }}
+###### Declared Type: {{ item.declaredType }}
+###### Scope: {{ item.scope }}
+###### Global Scope: {{ item.globalScope }}
+###### Type Substituted: {{ item.typeSubstituted }}
+{%-     endfor %}
+{%- endfor %}
+### Profiler Information
+#### Deployment ID: {{ deploymentInfoJSON.profilerInfo.deploymentID }}
+#### Node
+{%- for node in deploymentInfoJSON.profilerInfo.nodeList.node %}
+##### Online Subscription Enabled: {{ node.onlineSubscriptionEnabled }}
+##### Last Applied Feed Datetime: {{ node.lastAppliedFeedDateTime }}
+##### Scope: {{ node.scope }}
+##### Profiles
+{%-     for profile in node.profiles.profile %}
+###### {{ profile }}
+###### Custom Profile Count: {{ profile.customProfilesCount }}
+###### Endpoint Types: {{ profile.endpointTypes }}
+###### Total Profiles Count: {{ profile.totalProfilesCount }}
+###### Unique Endpoints Count: {{ profile.uniqueEndpointsCount }}
+###### Unknown Endpoints Count: {{ profile.unknownEndpointsCount }}
+###### Total Endpoints Count: {{ profile.totalEndpointsCount }}
+###### Uknown Endpoints Percentage: {{ profile.unknownEndpointsPercentage }}
+{%-     endfor %}
+{%- endfor %}
+### Deployment Information
+#### Deployment ID: {{ deploymentInfoJSON.deploymentInfo.deploymentID }}
+#### Node List
+{%- for node in deploymentInfoJSON.deploymentInfo.nodeList.nodeAndNodeCountAndCountInfo %}
+##### {{ node.name }}
+###### Declared Type: {{ node.declaredType }}
+###### Scope: {{ node.scope }}
+{%- endfor %}
+### NAD Information
+#### Deployment ID: {{ deploymentInfoJSON.nadInfo.deploymentID }}
+#### Node List
+{%- for node in deploymentInfoJSON.nadInfo.nodeList.nodeAndScope %}
+{%-     if node == "deployment" %}
+##### {{ node }}
+{%-     endif %}
+{%-     for item in node.content %}
+##### {{ item.name }}
+###### Declared Type: {{ item.declaredType }}
+###### Scope: {{ item.scope }}
+###### Global Scope: {{ item.globalScope }}
+###### Type Substituted: {{ item.typeSubstituted }}
+###### Value Name: {{ item.value.name }}
+###### Cisco Provided: {{ item.value.isCiscoProvided }}
+###### Default Profile: {{ item.value.isDefProfile }}
+###### TACACS Supported: {{ item.value.isTacacsSupported }}
+###### RADIUS Supported: {{ item.value.isRadiusSupported }}
+###### TrustSec Supported: {{ item.value.isTrustSecSupported }}
+###### Active NAD Count: {{ item.value.activeNADCount }}
+###### Total NAD Count: {{ item.value.totalNADCount }}
+{%-     endfor %}
+{%- endfor %}
+### MDM Information
+#### Deployment ID: {{ deploymentInfoJSON.mdmInfo.deploymentID }}
+#### Active MD Servers: {{ deploymentInfoJSON.mdmInfo.activeMdmServersCount }}
+#### Active Desktop MDM Servers: {{ deploymentInfoJSON.mdmInfo.activeDesktopMdmServersCount }}
+#### Active Mobile MDM Servers: {{ deploymentInfoJSON.mdmInfo.activeMobileMdmServersCount }}
+### License Information
+#### Deployment ID: {{ deploymentInfoJSON.licensesInfo.deploymentID }}
+#### Node List Node: deployment
+{%- for node in deploymentInfoJSON.licensesInfo.nodeList.nodeAndScope %}
+{%-     for item in node.content %}
+##### Name: {{ item.name }}
+###### Declared Type: {{ item.declaredType }}
+###### Scope: {{ item.scope }}
+###### Global Scope: {{ item.globalScope }}
+###### Type Substituted: {{ item.typeSubstituted }}
+{%-     endfor %}
+{%- endfor %}
+## Administrators
+{%- for admin in adminUsersDetails %}
+### {{ admin.AdminUser.name }}
+#### ID: {{ admin.AdminUser.id }}
+#### Description: {{ admin.AdminUser.description }}
+#### Enabled: {{ admin.AdminUser.enabled }}
+#### Change Password: {{ admin.AdminUser.changePassword }}
+#### Include System Alarms In Email: {{ admin.AdminUser.includeSystemAlarmsInEmail }}
+#### External User: {{ admin.AdminUser.externalUser }}
+#### Inactive Account Never Disabled: {{ admin.AdminUser.inactiveAccountNeverDisabled }}
+#### Admin Groups: {{ admin.AdminUser.adminGroups }}
+{%- endfor %}
+## Allowed Protocols
+{%- for resource in allowedProtocolsDetails %}
+### Name: {{ resource.AllowedProtocols.name }}
+#### ID: {{ resource.AllowedProtocols.id }}
+#### Description: {{ resource.AllowedProtocols.description }}
+##### Process Host Lookup: {{ resource.AllowedProtocols.processHostLookup }}
+##### Allow PAP ASCII: {{ resource.AllowedProtocols.allowPapAscii }}
+##### Allow CHAP: {{ resource.AllowedProtocols.allowChap }}
+##### Allow MS CHAPv1: {{ resource.AllowedProtocols.allowMsChapV1 }}
+##### Allow MS CHAPv2: {{ resource.AllowedProtocols.allowMsChapV2 }}
+##### Allow EAP MD5: {{ resource.AllowedProtocols.allowEapMd5 }}
+##### Allow LEAP: {{ resource.AllowedProtocols.allowLeap }}
+##### Allow EAP-TLS: {{ resource.AllowedProtocols.allowEapTls }}
+##### Allow EAP-TTLS: {{ resource.AllowedProtocols.allowEapTtls }}
+##### Allow EAP-FAST: {{ resource.AllowedProtocols.allowEapFast }}
+##### Allow PEAP: {{ resource.AllowedProtocols.allowPeap }}
+##### Allow TEAP: {{ resource.AllowedProtocols.allowTeap }}
+##### Allow Preferred EAP: {{ resource.AllowedProtocols.allowPreferredEapProtocol }}
+##### EAP-TLS Bit: {{ resource.AllowedProtocols.eapTlsLBit }}
+##### Allow Weak EAP Ciphers: {{ resource.AllowedProtocols.allowWeakCiphersForEap }}
+##### Require Message Authentication: {{ resource.AllowedProtocols.requireMessageAuth }}
+{%- endfor %}
+## Active Directory
+{%- for directory in activeDirectory %}
+### Name: {{ directory.ERSActiveDirectory.name }}
+#### Active Directory Scope Name: {{ directory.ERSActiveDirectory.adScopesNames }}
+#### ID: {{ directory.ERSActiveDirectory.id }}
+#### Description: {{ directory.ERSActiveDirectory.description }}
+#### Domain: {{ directory.ERSActiveDirectory.domain }}
+#### Enable Domain Allowed List: {{ directory.ERSActiveDirectory.enableDomainAllowedList }}
+#### Groups
+{%-     for group in directory.ERSActiveDirectory.adgroups.groups %}
+##### {{ group.name }}
+###### SID: {{ group.sid }}
+{%-     endfor %}
+#### Advanced Settings
+##### Enable Password Change: {{ directory.ERSActiveDirectory.advancedSettings.enablePassChange }}
+##### Enable Machine Authentication: {{ directory.ERSActiveDirectory.advancedSettings.enableMachineAuth }}
+##### Enable Machine Access: {{ directory.ERSActiveDirectory.advancedSettings.enableMachineAccess }}
+##### Aging Time: {{ directory.ERSActiveDirectory.advancedSettings.agingTime }}
+##### Enable Dial-In Permission Check: {{ directory.ERSActiveDirectory.advancedSettings.enableDialinPermissionCheck }}
+##### Enable Callback for Dial-In Client: {{ directory.ERSActiveDirectory.advancedSettings.enableCallbackForDialinClient }}
+##### Plain Text Authentication: {{ directory.ERSActiveDirectory.advancedSettings.plaintextAuth }}
+##### Identity Not In Active Directory Behavior: {{ directory.ERSActiveDirectory.advancedSettings.identityNotInAdBehaviour }}
+##### Unreachable Domain Behavior: {{ directory.ERSActiveDirectory.advancedSettings.unreachableDomainsBehaviour }}
+##### Enable Rewrites: {{ directory.ERSActiveDirectory.advancedSettings.enableRewrites }}
+{%-     for rule in directory.ERSActiveDirectory.advancedSettings.rewriteRules %}
+###### Row ID: {{ rule.rowId }}
+###### Rewrite Match: {{ rule.rewriteMatch }}
+###### Rewrite Result: {{ rule.rewriteResult }}
+{%-     endfor %}
+#### Contact Information
+##### First Name: {{ directory.ERSActiveDirectory.advancedSettings.firstName }}
+##### Last Name: {{ directory.ERSActiveDirectory.advancedSettings.lastName }}
+##### Department: {{ directory.ERSActiveDirectory.advancedSettings.department }}
+##### Organizational Unit: {{ directory.ERSActiveDirectory.advancedSettings.organizationalUnit }}
+##### Job Title: {{ directory.ERSActiveDirectory.advancedSettings.jobTitle }}
+##### Locality: {{ directory.ERSActiveDirectory.advancedSettings.locality }}
+##### E-mail: {{ directory.ERSActiveDirectory.advancedSettings.email }}
+##### State / Province: {{ directory.ERSActiveDirectory.advancedSettings.stateOrProvince }}
+##### Telephone: {{ directory.ERSActiveDirectory.advancedSettings.telephone }}
+##### Country: {{ directory.ERSActiveDirectory.advancedSettings.country }}
+##### Street Address: {{ directory.ERSActiveDirectory.advancedSettings.streetAddress }}
+##### Schema: {{ directory.ERSActiveDirectory.advancedSettings.schema }}
+{%- endfor %}
+## Authorization Profiles
+{%- for profile in authorizationProfile %}
+### {{ profile.AuthorizationProfile.name }}
+#### ID: {{ profile.AuthorizationProfile.id }}
+#### Description: {{ profile.AuthorizationProfile.description }}
+#### Access Type: {{ profile.AuthorizationProfile.accessType }}
+#### AuthZ Profile Type: {{ profile.AuthorizationProfile.authzProfileType }}
+#### Track Movement: {{ profile.AuthorizationProfile.trackMovement }}
+#### Agentless Posture: {{ profile.AuthorizationProfile.agentlessPosture }}
+#### Service Template: {{ profile.AuthorizationProfile.serviceTemplate }}
+#### Easy Wired Session Candidate: {{ profile.AuthorizationProfile.easywiredSessionCandidate }}
+#### Dynamic ACL Name: {{ profile.AuthorizationProfile.daclName }}
+#### Voice Domain Permission: {{ profile.AuthorizationProfile.voiceDomainPermission }}
+#### Profile Name: {{ profile.AuthorizationProfile.profileName }}
+{%- endfor %}
+## Downloadable Access Control Lists
+{%- for dacl in dacl %}
+### {{ dacl.DownloadableAcl.name }}
+#### ID: {{ dacl.DownloadableAcl.id }}
+#### Description: {{ dacl.DownloadableAcl.description }}
+#### DACL: {{ dacl.DownloadableAcl.dacl }}
+#### DACL Type: {{ dacl.DownloadableAcl.daclType }}
+{%- endfor %}
+## Endpoints
+{%- for endpoint in endpoint %}
+### {{ endpoint.ERSEndPoint.name }}
+#### MAC Address: {{ endpoint.ERSEndPoint.mac }}
+#### Profile ID: {{ endpoint.ERSEndPoint.profileId }}
+#### Static Profile Assignment: {{ endpoint.ERSEndPoint.staticProfileAssignment }}
+#### Group ID: {{ endpoint.ERSEndPoint.groupId }}
+#### Static Group Assignment: {{ endpoint.ERSEndPoint.staticGroupAssignment }}
+#### Portal User: {{ endpoint.ERSEndPoint.portalUser }}
+#### Identity Store: {{ endpoint.ERSEndPoint.identityStore }}
+##### Identity Store ID: {{ endpoint.ERSEndPoint.identityStoreId }}
+{%- endfor %}
+## Endpoint Groups
+{%- for group in endpointGroup %}
+### {{ group.EndPointGroup.name }}
+#### ID: {{ group.EndPointGroup.id }}
+#### Description: {{ group.EndPointGroup.description }}
+#### System Defined: {{ group.EndPointGroup.systemDefined }}
+{%- endfor %}
+## Failure Codes
+{%- for code in failureCodes['failureReason'] %}
+### ID: {{ code['@id'] }}
+#### Meaning: {{ code.code }}
+{%- endfor %}
+## Identity Groups
+{%- for identity in identityGroup %}
+### {{ identity.IdentityGroup.name }}
+#### ID: {{ identity.IdentityGroup.id }}
+#### Description: {{ identity.IdentityGroup.description }}
+#### Parent: {{ identity.IdentityGroup.parent }}
+{%- endfor %}
+## Identity Store Sequence
+{%- for store in identityStoreSequence %}
+### {{ store.IdStoreSequence.name }}
+#### ID: {{ store.IdStoreSequence.id }}
+#### Description: {{ store.IdStoreSequence.description }}
+#### Sequence Item
+{%-     for item in store.IdStoreSequence.idSeqItem %}
+##### Order: {{ item.order }}
+##### Identity Store: {{ item.idstore }}
+{%-     endfor %}
+{%- endfor %}
+## Internal Users
+{%- for user in internalUser %}
+### {{ user.InternalUser.name }}
+#### ID: {{ user.InternalUser.id }}
+#### Enabled: {{ user.InternalUser.enabled }}
+#### First Name: {{ user.InternalUser.firstName }}
+#### Last Name: {{ user.InternalUser.lastName }}
+#### Change Password: {{ user.InternalUser.changePassword }}
+#### Identity Groups: {{ user.InternalUser.identityGroups }}
+#### Expiry Date Enabled: {{ user.InternalUser.expiryDateEnabled }}
+#### Password ID Store: {{ user.InternalUser.passwordIDStore }}
+{%- endfor %}
+## Network Devices
+{%- for device in networkDevice %}
+### {{ device.NetworkDevice.name }}
+#### ID: {{ device.NetworkDevice.name }}
+#### Description: {{ device.NetworkDevice.description }}
+#### Authentication Settings
+##### Network Protocol: {{ device.NetworkDevice.authenticationSettings.networkProtocol }}
+##### Radius Shared Secret: {{ device.NetworkDevice.authenticationSettings.radiusSharedSecret }}
+##### Enable Key Wrap: {{ device.NetworkDevice.authenticationSettings.enableKeyWrap }}
+##### DTLS Required: {{ device.NetworkDevice.authenticationSettings.dtlsRequired }}
+##### Enable Multi Secret: {{ device.NetworkDevice.authenticationSettings.enableMultiSecret }}
+#### Profile Name: {{ device.NetworkDevice.profileName }}
+#### Change of Authority Port: {{ device.NetworkDevice.coaPort }}
+#### IP Addresses
+{%-     for ip in device.NetworkDevice.NetworkDeviceIPList %}
+##### IP Address: {{ ip.ipaddress }}
+##### Subnet Mask: {{ ip.mask }}
+{%-     endfor %}
+#### Network Device Groups
+{%-    for group in device.NetworkDevice.NetworkDeviceGroupList%}
+##### {{ group }}
+{%-    endfor %}
+{%- endfor %}
+## Network Device Groups
+{%- for group in networkDeviceGroup %}
+### {{ group.NetworkDeviceGroup.name }}
+#### ID: {{ group.NetworkDeviceGroup.id }}
+#### Description: {{ group.NetworkDeviceGroup.description }}
+#### Other Name: {{ group.NetworkDeviceGroup.othername }}
+{%- endfor%}
+## Nodes
+{%- for node in node %}
+### {{ node.Node.name }}
+#### ID: {{ node.Node.id }}
+#### Display Name: {{ node.Node.displayName }}
+#### Gateway: {{ node.Node.gateWay }}
+#### In Deployment: {{ node.Node.inDeployment }}
+#### FQDN: {{ node.Node.fqdn }}
+##### Other PAP FQDN: {{ node.Node.otherPapFqdn }}
+#### IP Addresses
+##### Primary: {{ node.Node.ipAddress }}
+##### SXP: {{ node.Node.sxpIpAddress }}
+{%-     for ip in node.Node.ipAddresses %}
+##### {{ ip }}
+{%-     endfor %}
+#### Node Type
+##### PAP Node: {{ node.Node.papNode }}
+###### Primary PAP Node: {{ node.Node.primaryPapNode }}
+##### pxGrid Node: {{ node.Node.pxGridNode }}
+{%- endfor %}
+## Portals
+{%- for portal in portal %}
+### {{ portal.ERSPortal.name }}
+#### ID: {{ portal.ERSPortal.id }}
+#### Description: {{ portal.ERSPortal.description }}
+#### Allow Sponsor To Change Own Password: {{ portal.ERSPortal.allowSponsorToChangeOwnPassword }}
+#### Guest User Field List
+{%-     for field in portal.ERSPortal.guestUserFieldList %}
+##### {{ field.labelName }}
+###### Data Type: {{ field.dataType }}
+###### Required: {{ field.required }}
+###### Dictionary Label Key: {{ field.dictionaryLabelKey }}
+###### Custom Type: {{ field.customType }}
+{%-     endfor %}
+#### Portal Type: {{ portal.ERSPortal.portalType }}
+{%- endfor %}
+### Self-Registration
+{%- for portal in selfRegPortal %}
+#### {{ portal.SelfRegPortal.name }}
+##### ID: {{ portal.SelfRegPortal.id }}
+##### Description: {{ portal.SelfRegPortal.description }}
+##### Portal Type: {{ portal.SelfRegPortal.portalType }}
+##### [Portal Test URL]({{ portal.SelfRegPortal.portalTestUrl }})
+##### HTTPS Port: {{ portal.SelfRegPortal.settings.portalSettings.httpsPort }}
+##### Allowed Interface
+{%-     for interface in portal.SelfRegPortal.settings.allowedInterfaces %}
+###### {{ interface }}
+{%-     endfor %}
+##### Cetificate Group Tag: {{ portal.SelfRegPortal.settings.portalSettings.certificateGroupTag }}
+##### Authentication Method: {{ portal.SelfRegPortal.settings.portalSettings.authenticationMethod }}
+##### Assigned Guest Type For Employee: {{ portal.SelfRegPortal.settings.portalSettings.assignedGuestTypeForEmployee }}
+##### Language
+###### Display Language: {{ portal.SelfRegPortal.settings.portalSettings.displayLang }}
+###### Fallback Language: {{ portal.SelfRegPortal.settings.portalSettings.fallbackLanguage }}
+###### Always Used Language: {{ portal.SelfRegPortal.settings.portalSettings.alwaysUsedLanguage }}
+##### Require Access Code: {{ portal.SelfRegPortal.settings.loginPageSettings.requireAccessCode }}
+##### Rate Limit
+###### Max Failed Attempts Before Rate Limit: {{ portal.SelfRegPortal.settings.loginPageSettings.maxFailedAttemptsBeforeRateLimit }}
+###### Time Between Logins During Rate Limit: {{ portal.SelfRegPortal.settings.loginPageSettings.timeBetweenLoginsDuringRateLimit }}
+##### Include AUP: {{ portal.SelfRegPortal.settings.loginPageSettings.includeAup }}
+##### Permissions
+###### Allowed Guest To Create Accounts: {{ portal.SelfRegPortal.settings.loginPageSettings.allowGuestToCreateAccounts }}
+###### Allowed Forgot Password: {{ portal.SelfRegPortal.settings.loginPageSettings.allowForgotPassword }}
+###### Allowed Guest to Change Password: {{ portal.SelfRegPortal.settings.loginPageSettings.allowGuestToChangePassword }}
+###### Allowed Alternate Guest Portal: {{ portal.SelfRegPortal.settings.loginPageSettings.allowAlternateGuestPortal }}
+##### Assign Guest to Guest Type: {{ portal.SelfRegPortal.settings.selfRegPageSettings.assignGuestsToGuestType }}
+##### Account Validity Duration: {{ portal.SelfRegPortal.settings.selfRegPageSettings.accountValidityDuration }}
+##### Required Registration Code: {{ portal.SelfRegPortal.settings.selfRegPageSettings.requireRegistrationCode }}
+##### Required Fields
+###### Username Required: {{ portal.SelfRegPortal.settings.selfRegPageSettings.fieldUserName.require }}
+###### First Name Required: {{ portal.SelfRegPortal.settings.selfRegPageSettings.fieldFirstName.require }}
+###### Last Name Required: {{ portal.SelfRegPortal.settings.selfRegPageSettings.fieldLastName.require }}
+###### E-Mail Required: {{ portal.SelfRegPortal.settings.selfRegPageSettings.fieldEmailAddr.require }}
+###### Phone Number Required: {{ portal.SelfRegPortal.settings.selfRegPageSettings.fieldPhoneNo.require }}
+###### Company Required: {{ portal.SelfRegPortal.settings.selfRegPageSettings.fieldCompany.require }}
+###### Location Required: {{ portal.SelfRegPortal.settings.selfRegPageSettings.fieldLocation.require }}
+{%-     for location in portal.SelfRegPortal.settings.selfRegPageSettings.selectableLocations %}
+###### Selectable Location: {{ location }}
+{%-     endfor %}
+###### SMS Provider Required: {{ portal.SelfRegPortal.settings.selfRegPageSettings.fieldSmsProvider.require }}
+{%-     for sms in portal.SelfRegPortal.settings.selfRegPageSettings.selectableSmsProviders %}
+###### Selectable SMS Provider: {{ sms }}
+{%-     endfor %}
+###### Person Being Visited: {{ portal.SelfRegPortal.settings.selfRegPageSettings.fieldPersonBeingVisited.require }}
+###### Reason for Visit: {{ portal.SelfRegPortal.settings.selfRegPageSettings.fieldReasonForVisit.require }}
+##### Include AUP: {{ portal.SelfRegPortal.settings.selfRegPageSettings.includeAup }}
+##### Require AUP Acceptance: {{ portal.SelfRegPortal.settings.selfRegPageSettings.requireAupAcceptance }}
+##### Guest Email
+###### Enable Guest E-Mail Whitelist: {{ portal.SelfRegPortal.settings.selfRegPageSettings.enableGuestEmailWhitelist }}
+###### Guest E-Mail Blacklist: {{ portal.SelfRegPortal.settings.selfRegPageSettings.enableGuestEmailBlacklist }}
+##### Require Guest Approval: {{ portal.SelfRegPortal.settings.selfRegPageSettings.requireGuestApproval }}
+##### Auto Login
+###### Auto Login Self Wait: {{ portal.SelfRegPortal.settings.selfRegPageSettings.autoLoginSelfWait }}
+###### Auto Login Period: {{ portal.SelfRegPortal.settings.selfRegPageSettings.autoLoginTimePeriod }}
+##### Grace Access
+###### Allow Grace Access: {{ portal.SelfRegPortal.settings.selfRegPageSettings.allowGraceAccess }}
+###### Grace Access Expire Interval: {{ portal.SelfRegPortal.settings.selfRegPageSettings.graceAccessExpireInterval }}
+###### Grace Account Expire Notification: {{ portal.SelfRegPortal.settings.selfRegPageSettings.graceAccessSendAccountExpiration }}
+##### POST Registration Redirect: {{ portal.SelfRegPortal.settings.selfRegPageSettings.postRegistrationRedirect }}
+##### Credential Notification
+###### E-Mail: {{ portal.SelfRegPortal.settings.selfRegPageSettings.credentialNotificationUsingEmail }}
+###### SMS: {{ portal.SelfRegPortal.settings.selfRegPageSettings.credentialNotificationUsingSms }}
+##### Link Time Units: {{ portal.SelfRegPortal.settings.selfRegPageSettings.approveDenyLinksTimeUnits }}
+##### Authenticate Sponsors Using Portal List: {{ portal.SelfRegPortal.settings.selfRegPageSettings.authenticateSponsorsUsingPortalList }}
+##### Sponsor Portal List
+{%-     for portal in portal.SelfRegPortal.settings.selfRegPageSettings.sponsorPortalList %}
+###### {{ portal }}
+{%-     endfor%}
+#### Success
+##### Include
+###### Username: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.includeUserName }}
+###### Password: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.includePassword }}
+###### First Name: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.includeFirstName }}
+###### Last Name: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.includeLastName }}
+###### E-Mail: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.includeEmailAddr }}
+###### Phone Number: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.includePhoneNo }}
+###### Company: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.includeCompany }}
+###### Location: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.includeLocation }}
+###### SMS Provider: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.includeSmsProvider }}
+###### Person Being Visited: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.includePersonBeingVisited }}
+###### Reason for Visit: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.includeReasonForVisit }}
+###### AUP: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.includeAup }}
+##### Allow
+###### Guest Send Self Using Print: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.allowGuestSendSelfUsingPrint }}
+###### Guest Send Self Using E-Mail: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.allowGuestSendSelfUsingEmail }}
+###### Guest Send Self Using SMS: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.allowGuestSendSelfUsingSms }}
+###### Guest Login From Self Registration Page: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.allowGuestLoginFromSelfregSuccessPage }}
+##### Acceptable Use Policy
+###### AUP On Page: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.aupOnPage }}
+###### AUP Acceptance: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.requireAupAcceptance }}
+###### AUP Scrolling: {{ portal.SelfRegPortal.settings.selfRegSuccessSettings.requireAupScrolling }}
+#### Acceptable Use Policy
+##### Include: {{ portal.SelfRegPortal.settings.aupSettings.includeAup }}
+##### Require Scrolling: {{ portal.SelfRegPortal.settings.aupSettings.requireScrolling }}
+##### Display Frequency: {{ portal.SelfRegPortal.settings.aupSettings.displayFrequency }}
+#### Guest Settings
+##### Allow Password Change At First Login: {{ portal.SelfRegPortal.settings.guestChangePasswordSettings.allowChangePasswdAtFirstLogin }}
+##### Auto Register Guest Devices: {{ portal.SelfRegPortal.settings.guestDeviceRegistrationSettings.autoRegisterGuestDevices }}
+##### Allow Guest To Register Devices: {{ portal.SelfRegPortal.settings.guestDeviceRegistrationSettings.allowGuestsToRegisterDevices }}
+#### Bring Your Own Device
+##### Welcome Settings
+###### Enable BYOD: {{ portal.SelfRegPortal.settings.byodSettings.byodWelcomeSettings.enableBYOD }}
+###### Enable Guest Access: {{ portal.SelfRegPortal.settings.byodSettings.byodWelcomeSettings.enableGuestAccess }}
+###### Require MDM: {{ portal.SelfRegPortal.settings.byodSettings.byodWelcomeSettings.requireMDM }}
+##### AUP
+###### Include: {{ portal.SelfRegPortal.settings.byodSettings.byodWelcomeSettings.includeAup }}
+###### Display: {{ portal.SelfRegPortal.settings.byodSettings.byodWelcomeSettings.aupDisplay }}
+###### Require Acceptance: {{ portal.SelfRegPortal.settings.byodSettings.byodWelcomeSettings.requireAupAcceptance }}
+###### Require Scrolling: {{ portal.SelfRegPortal.settings.byodSettings.byodWelcomeSettings.requireScrolling }}
+##### Registration Settings
+###### Show Device ID: {{ portal.SelfRegPortal.settings.byodSettings.byodRegistrationSettings.showDeviceID }}
+###### Endpoint Identity Group ID: {{ portal.SelfRegPortal.settings.byodSettings.byodRegistrationSettings.endPointIdentityGroupId }}
+##### Success Settings
+###### Redirect: {{ portal.SelfRegPortal.settings.byodSettings.byodRegistrationSuccessSettings.successRedirect }}
+#### Post Login
+##### Include Banner: {{ portal.SelfRegPortal.settings.postLoginBannerSettings.includePostAccessBanner }}
+##### Success Redirect: {{ portal.SelfRegPortal.settings.authSuccessSettings.successRedirect }}
+#### Support Information Include
+##### Support Info Page: {{ portal.SelfRegPortal.settings.supportInfoSettings.includeSupportInfoPage }}
+##### MAC Address: {{ portal.SelfRegPortal.settings.supportInfoSettings.includeMacAddr }}
+##### IP Address: {{ portal.SelfRegPortal.settings.supportInfoSettings.includeIpAddress }}
+##### Browser User Agent: {{ portal.SelfRegPortal.settings.supportInfoSettings.includeBrowserUserAgent }}
+##### Policy Server: {{ portal.SelfRegPortal.settings.supportInfoSettings.includePolicyServer }}
+##### Failure Code: {{ portal.SelfRegPortal.settings.supportInfoSettings.includeFailureCode }}
+##### Empty Field: {{ portal.SelfRegPortal.settings.supportInfoSettings.emptyFieldDisplay }}
+#### Customizations
+##### Portal Theme
+###### {{ portal.SelfRegPortal.customizations.portalTheme.name }}
+###### ID: {{ portal.SelfRegPortal.customizations.portalTheme.id }}
+##### Language: {{ portal.SelfRegPortal.customizations.language.viewLanguage }}
+##### Banner Title: {{ portal.SelfRegPortal.customizations.globalCustomizations.bannerTitle }}
+##### Contact: {{ portal.SelfRegPortal.customizations.globalCustomizations.contactText }}
+##### Footer: {{ portal.SelfRegPortal.customizations.globalCustomizations.footerElement }}
+{%- endfor%}
+### Sponsor
+{%- for portal in sponsorPortal %}
+#### {{ portal.SponsorPortal.name }}
+##### ID: {{ portal.SponsorPortal.id }}
+##### Description: {{ portal.SponsorPortal.description }}
+##### Portal Type: {{ portal.SponsorPortal.portalType }}
+##### [Test URL]({{ portal.SponsorPortal.portalTestUrl }})
+##### Portal Settings
+###### HTTPS Port: {{ portal.SponsorPortal.settings.portalSettings.httpsPort }}
+{%-     for interface in portal.SponsorPortal.settings.portalSettings.allowedInterfaces %}
+###### Allowed Interface: {{ portal.SponsorPortal.settings.portalSettings.allowedInterfaces }}
+{%-     endfor%}
+###### Certificate Group Tage: {{ portal.SponsorPortal.settings.portalSettings.certificateGroupTag }}
+###### Authentication Method: {{ portal.SponsorPortal.settings.portalSettings.authenticationMethod }}
+###### Idle Timeout: {{ portal.SponsorPortal.settings.portalSettings.idleTimeout }}
+###### Display Language: {{ portal.SponsorPortal.settings.portalSettings.displayLang }}
+###### Fallback Language: {{ portal.SponsorPortal.settings.portalSettings.fallbackLanguage }}
+###### Always Used Language: {{ portal.SponsorPortal.settings.portalSettings.alwaysUsedLanguage }}
+{%-     for ssid in portal.SponsorPortal.settings.portalSettings.availableSsids %}
+###### Available SSID: {{ portal.SponsorPortal.settings.portalSettings.availableSsids }}
+{%-     endfor%}
+##### Login Page
+###### Max Failed Attempts Before Rate Limit: {{ portal.SponsorPortal.settings.loginPageSettings.maxFailedAttemptsBeforeRateLimit }}
+###### Time Between Logins During Rate Limit: {{ portal.SponsorPortal.settings.loginPageSettings.timeBetweenLoginsDuringRateLimit }}
+###### Include AUP: {{ portal.SponsorPortal.settings.loginPageSettings.includeAup }}
+###### Require AUP Scrolling: {{ portal.SponsorPortal.settings.loginPageSettings.requireAupScrolling }}
+##### Acceptable Use Policy
+###### Include: {{ portal.SponsorPortal.settings.aupSettings.includeAup }}
+###### Require Scrolling: {{ portal.SponsorPortal.settings.aupSettings.requireScrolling }}
+###### Display Frequency: {{ portal.SponsorPortal.settings.aupSettings.displayFrequency }}
+##### Sponsor Change Password
+###### Allow Sponsor to Change Password: {{ portal.SponsorPortal.settings.sponsorChangePasswordSettings.allowSponsorToChangePwd }}
+##### Post Login Banner
+###### Include POST Access: {{ portal.SponsorPortal.settings.postLoginBannerSettings.includePostAccessBanner }}
+##### Support Info
+###### Support Page: {{ portal.SponsorPortal.settings.supportInfoSettings.includeSupportInfoPage }}
+###### MAC Address: {{ portal.SponsorPortal.settings.supportInfoSettings.includeMacAddr }}
+###### IP Address: {{ portal.SponsorPortal.settings.supportInfoSettings.includeIpAddress }}
+###### Browser User Agent: {{ portal.SponsorPortal.settings.supportInfoSettings.includeBrowserUserAgent }}
+###### Policy Server: {{ portal.SponsorPortal.settings.supportInfoSettings.includePolicyServer }}
+###### Failure Code: {{ portal.SponsorPortal.settings.supportInfoSettings.includeFailureCode }}
+###### Empty Field Display: {{ portal.SponsorPortal.settings.supportInfoSettings.emptyFieldDisplay }}
+#### Customizations
+##### Portal Theme
+###### Name: {{ portal.SponsorPortal.customizations.portalTheme.name }}
+###### ID: {{ portal.SponsorPortal.customizations.portalTheme.id }}
+##### Language: {{ portal.SponsorPortal.customizations.language.viewLanguage }}
+##### Banner Title: {{ portal.SponsorPortal.customizations.globalCustomizations.bannerTitle }}
+##### Contact Text: {{ portal.SponsorPortal.customizations.globalCustomizations.contactText }}
+##### Footer Element: {{ portal.SponsorPortal.customizations.globalCustomizations.footerElement }}
+{%- endfor %}
+### Sponsored Guest
+{%- for portal in sponsorGuestPortal %}
+#### {{ portal.SponsoredGuestPortal.name }}
+##### ID: {{ portal.SponsoredGuestPortal.id }}
+##### Description: {{ portal.SponsoredGuestPortal.description }}
+##### Portal Type: {{ portal.SponsoredGuestPortal.portalType }}
+##### [Test URL]({{ portal.SponsoredGuestPortal.portalTestUrl }})
+##### Portal Settings
+###### HTTPS Port: {{ portal.SponsoredGuestPortal.settings.portalSettings.httpsPort }}
+{%-    for interface in portal.SponsoredGuestPortal.settings.portalSettings.allowedInterfaces %}
+###### Interface: {{ interface }}
+{%-    endfor%}
+###### Certificate Group Tag: {{ portal.SponsoredGuestPortal.settings.portalSettings.certificateGroupTag }}
+###### Authentication Method: {{ portal.SponsoredGuestPortal.settings.portalSettings.authenticationMethod }}
+###### Assigned Guest Type For Employee: {{ portal.SponsoredGuestPortal.settings.portalSettings.assignedGuestTypeForEmployee }}
+###### Display Language: {{ portal.SponsoredGuestPortal.settings.portalSettings.displayLang }}
+###### Fallback Language: {{ portal.SponsoredGuestPortal.settings.portalSettings.fallbackLanguage }}
+###### Always Used Language: {{ portal.SponsoredGuestPortal.settings.portalSettings.alwaysUsedLanguage }}
+##### Login Page Settings
+###### Required Access Code: {{ portal.SponsoredGuestPortal.settings.loginPageSettings.requireAccessCode }}
+###### Max Failed Attempts Before Rate Limit: {{ portal.SponsoredGuestPortal.settings.loginPageSettings.maxFailedAttemptsBeforeRateLimit }}
+###### Time Between Logins During Rate Limit: {{ portal.SponsoredGuestPortal.settings.loginPageSettings.timeBetweenLoginsDuringRateLimit }}
+###### Include AUP: {{ portal.SponsoredGuestPortal.settings.loginPageSettings.includeAup }}
+###### Allowed Guest to Create Accounts: {{ portal.SponsoredGuestPortal.settings.loginPageSettings.allowGuestToCreateAccounts }}
+###### Allowed Forgot Password: {{ portal.SponsoredGuestPortal.settings.loginPageSettings.allowForgotPassword }}
+###### Allowed Guest to Change Password: {{ portal.SponsoredGuestPortal.settings.loginPageSettings.allowGuestToChangePassword }}
+###### Allowed Alternative Guest Portal: {{ portal.SponsoredGuestPortal.settings.loginPageSettings.allowAlternateGuestPortal }}
+##### Acceptable Use Policy
+###### Include: {{ portal.SponsoredGuestPortal.settings.aupSettings.includeAup }}
+###### Require Scrolling: {{ portal.SponsoredGuestPortal.settings.aupSettings.requireScrolling }}
+###### Display Frequency: {{ portal.SponsoredGuestPortal.settings.aupSettings.displayFrequency }}
+##### Guest Change Password
+###### Allow Password Change at First Login: {{ portal.SponsoredGuestPortal.settings.guestChangePasswordSettings.allowChangePasswdAtFirstLogin }}
+##### Device Registration
+###### Auto Register Guest Devices: {{ portal.SponsoredGuestPortal.settings.guestDeviceRegistrationSettings.autoRegisterGuestDevices }}
+###### Allow Guest to Register Devices: {{ portal.SponsoredGuestPortal.settings.guestDeviceRegistrationSettings.allowGuestsToRegisterDevices }}
+##### Bring Your Own Device
+###### Enable: {{ portal.SponsoredGuestPortal.settings.byodSettings.byodWelcomeSettings.enableBYOD }}
+###### Enable Guest Access: {{ portal.SponsoredGuestPortal.settings.byodSettings.byodWelcomeSettings.enableGuestAccess }}
+###### Require MDM: {{ portal.SponsoredGuestPortal.settings.byodSettings.byodWelcomeSettings.requireMDM }}
+###### Include AUP: {{ portal.SponsoredGuestPortal.settings.byodSettings.byodWelcomeSettings.includeAup }}
+###### AUP Display: {{ portal.SponsoredGuestPortal.settings.byodSettings.byodWelcomeSettings.aupDisplay }}
+###### Require AUP Acceptance: {{ portal.SponsoredGuestPortal.settings.byodSettings.byodWelcomeSettings.requireAupAcceptance }}
+###### Require Scrolling: {{ portal.SponsoredGuestPortal.settings.byodSettings.byodWelcomeSettings.requireScrolling }}
+###### Show Device ID: {{ portal.SponsoredGuestPortal.settings.byodSettings.byodRegistrationSettings.showDeviceID }}
+###### Endpoint Identity Group ID: {{ portal.SponsoredGuestPortal.settings.byodSettings.byodRegistrationSettings.endPointIdentityGroupId }}
+###### Success Redirect: {{ portal.SponsoredGuestPortal.settings.byodSettings.byodRegistrationSuccessSettings.successRedirect }}
+##### Post Login Banner
+###### Include Post Access Banner: {{ portal.SponsoredGuestPortal.settings.postLoginBannerSettings.includePostAccessBanner }}
+##### Authentication Success
+###### Success Redirect: {{ portal.SponsoredGuestPortal.settings.authSuccessSettings.successRedirect }}
+##### Support Information
+###### Support Info Page: {{ portal.SponsoredGuestPortal.settings.supportInfoSettings.includeSupportInfoPage }}
+###### MAC Address: {{ portal.SponsoredGuestPortal.settings.supportInfoSettings.includeMacAddr }}
+###### IP Address: {{ portal.SponsoredGuestPortal.settings.supportInfoSettings.includeIpAddress }}
+###### Browser User Agent: {{ portal.SponsoredGuestPortal.settings.supportInfoSettings.includeBrowserUserAgent }}
+###### Policy Server: {{ portal.SponsoredGuestPortal.settings.supportInfoSettings.includePolicyServer }}
+###### Failure Code: {{ portal.SponsoredGuestPortal.settings.supportInfoSettings.includeFailureCode }}
+###### Empty Field: {{ portal.SponsoredGuestPortal.settings.supportInfoSettings.emptyFieldDisplay }}
+##### Customizations
+###### Portal Theme Name: {{ portal.SponsoredGuestPortal.customizations.portalTheme.name }}
+###### Portal Theme ID: {{ portal.SponsoredGuestPortal.customizations.portalTheme.id }}
+###### Portal Language: {{ portal.SponsoredGuestPortal.customizations.language.viewLanguage }}
+###### Banner Title: {{ portal.SponsoredGuestPortal.customizations.globalCustomizations.bannerTitle }}
+###### Contact Text: {{ portal.SponsoredGuestPortal.customizations.globalCustomizations.contactText }}
+###### Footer: {{ portal.SponsoredGuestPortal.customizations.globalCustomizations.footerElement }}
+{%- endfor %}
+## Profiler Profiles
+{%- for profile in profiler %}
+### {{ profile.ProfilerProfile.name }}
+#### ID: {{ profile.ProfilerProfile.id }}
+#### Description: {{ profile.ProfilerProfile.description }}
+{%- endfor %}
+## SGTs 
+{%- for sgt in sgt %}
+### {{ sgt.Sgt.name }}
+#### ID: {{ sgt.Sgt.id }}
+#### Description: {{ sgt.Sgt.description }}
+#### Value: {{ sgt.Sgt.value }}
+#### Generation ID: {{ sgt.Sgt.generationId }}
+#### Propogate to APIC: {{ sgt.Sgt.propogateToApic }}
+{%- endfor %}
+## SGT ACLs
+{%- for acl in sgtacl %}
+### {{ acl.Sgacl.name }}
+#### ID: {{ acl.Sgacl.id }}
+#### Description: {{ acl.Sgacl.description }}
+#### Generation ID: {{ acl.Sgacl.generationId }}
+#### ACL Content: {{ acl.Sgacl.aclcontent }}
+{%- endfor %}
+## Sponsor Groups
+{%- for group in sponsorGroup %}
+### {{ group.SponsorGroup.name }}
+#### ID: {{ group.SponsorGroup.id }}
+#### Description: {{ group.SponsorGroup.description }}
+#### Enabled: {{ group.SponsorGroup.isEnabled }}
+#### Default: {{ group.SponsorGroup.isDefaultGroup }}
+#### Member Groups
+{%-     for member in group.SponsorGroup.memberGroups %}
+##### {{ member }}
+{%-     endfor %}
+#### Guest Types
+{%-     for type in group.SponsorGroup.guestTypes %}
+##### {{ type }}
+{%-     endfor %}
+#### Locations
+{%-     for location in group.SponsorGroup.locations %}
+##### {{ location }}
+{%-     endfor %}
+#### Auto Notification: {{ group.SponsorGroup.autoNotification }}
+#### Create Permissions
+##### Import Multiple Accounts: {{ group.SponsorGroup.createPermissions.canImportMultipleAccounts }}
+##### Import Batch Size Limit: {{ group.SponsorGroup.createPermissions.importBatchSizeLimit }}
+##### Create Random Accounts: {{ group.SponsorGroup.createPermissions.canCreateRandomAccounts }}
+##### Random Batch Size Limit: {{ group.SponsorGroup.createPermissions.randomBatchSizeLimit }}
+##### Specify Username Prefix: {{ group.SponsorGroup.createPermissions.canSpecifyUsernamePrefix }}
+##### Set Future Start Date: {{ group.SponsorGroup.createPermissions.canSetFutureStartDate }}
+##### Start Date Future Limit Days: {{ group.SponsorGroup.createPermissions.startDateFutureLimitDays }}
+#### Manage Permissions: {{ group.SponsorGroup.managePermission }}
+#### Additonal Permissions
+##### Update Guest Contact Information: {{ group.SponsorGroup.otherPermissions.canUpdateGuestContactInfo }}
+##### View Guest Passwords: {{ group.SponsorGroup.otherPermissions.canViewGuestPasswords }}
+##### Send SMS Notifications: {{ group.SponsorGroup.otherPermissions.canSendSmsNotifications }}
+##### Reset Guest Passwords: {{ group.SponsorGroup.otherPermissions.canResetGuestPasswords }}
+##### Extend Guest Accounts: {{ group.SponsorGroup.otherPermissions.canExtendGuestAccounts }}
+##### Delete Guest Accounts: {{ group.SponsorGroup.otherPermissions.canDeleteGuestAccounts }}
+##### Suspend Guest Accounts: {{ group.SponsorGroup.otherPermissions.canSuspendGuestAccounts }}
+##### Require Suspension Reason: {{ group.SponsorGroup.otherPermissions.requireSuspensionReason }}
+##### Reinstate Suspended Accounts: {{ group.SponsorGroup.otherPermissions.canReinstateSuspendedAccounts }}
+##### Approve Self Registered Guests: {{ group.SponsorGroup.otherPermissions.canApproveSelfregGuests }}
+##### Limit Approval to Sponsored Guests: {{ group.SponsorGroup.otherPermissions.limitApprovalToSponsorsGuests }}
+##### Access Via REST: {{ group.SponsorGroup.otherPermissions.canAccessViaRest }}
+{%- endfor %}
+## Session Count
+### Active
+#### {{ activeSessionCount.sessionCount.count }}
+### Posture
+#### {{ postureCount.sessionCount.count }}
+### Profiler
+#### {{ profilerCount.sessionCount.count }}

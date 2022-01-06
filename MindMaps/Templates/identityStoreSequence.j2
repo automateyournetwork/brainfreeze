@@ -1,0 +1,11 @@
+# Identity Store Sequence
+{%- for store in identityStoreSequence %}
+## {{ store.IdStoreSequence.name }}
+### ID: {{ store.IdStoreSequence.id }}
+### Description: {{ store.IdStoreSequence.description }}
+### Sequence Item
+{%-     for item in store.IdStoreSequence.idSeqItem %}
+#### Order: {{ item.order }}
+#### Identity Store: {{ item.idstore }}
+{%-     endfor %}
+{%- endfor %}

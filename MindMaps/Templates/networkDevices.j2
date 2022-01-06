@@ -1,0 +1,23 @@
+# Network Devices
+{%- for device in networkDevice %}
+## {{ device.NetworkDevice.name }}
+### ID: {{ device.NetworkDevice.name }}
+### Description: {{ device.NetworkDevice.description }}
+### Authentication Settings
+#### Network Protocol: {{ device.NetworkDevice.authenticationSettings.networkProtocol }}
+#### Radius Shared Secret: {{ device.NetworkDevice.authenticationSettings.radiusSharedSecret }}
+#### Enable Key Wrap: {{ device.NetworkDevice.authenticationSettings.enableKeyWrap }}
+#### DTLS Required: {{ device.NetworkDevice.authenticationSettings.dtlsRequired }}
+#### Enable Multi Secret: {{ device.NetworkDevice.authenticationSettings.enableMultiSecret }}
+### Profile Name: {{ device.NetworkDevice.profileName }}
+### Change of Authority Port: {{ device.NetworkDevice.coaPort }}
+### IP Addresses
+{%-     for ip in device.NetworkDevice.NetworkDeviceIPList %}
+#### IP Address: {{ ip.ipaddress }}
+#### Subnet Mask: {{ ip.mask }}
+{%-     endfor %}
+### Network Device Groups
+{%-    for group in device.NetworkDevice.NetworkDeviceGroupList%}
+#### {{ group }}
+{%-    endfor %}
+{%- endfor %}

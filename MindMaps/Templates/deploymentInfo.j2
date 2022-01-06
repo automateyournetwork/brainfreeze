@@ -1,0 +1,84 @@
+# Deployment Information
+## Network Access Information
+### Deployment ID: {{ deploymentInfoJSON.networkAccessInfo.deploymentID }}
+#### TrustSec Control: {{ deploymentInfoJSON.networkAccessInfo.trustSecControl }}
+### Node List
+{%- for node in deploymentInfoJSON.networkAccessInfo.nodeList.nodeAndScope %}
+{%-     if node == 'deployment' %}
+#### {{ node }}
+{%-     endif %}
+{%-     for item in node.content %}
+##### Name: {{ item.name }}
+##### Declared Type: {{ item.declaredType }}
+##### Scope: {{ item.scope }}
+##### Global Scope: {{ item.globalScope }}
+##### Type Substituted: {{ item.typeSubstituted }}
+{%-     endfor %}
+{%- endfor %}
+## Profiler Information
+### Deployment ID: {{ deploymentInfoJSON.profilerInfo.deploymentID }}
+### Node
+{%- for node in deploymentInfoJSON.profilerInfo.nodeList.node %}
+#### Online Subscription Enabled: {{ node.onlineSubscriptionEnabled }}
+#### Last Applied Feed Datetime: {{ node.lastAppliedFeedDateTime }}
+#### Scope: {{ node.scope }}
+#### Profiles
+{%-     for profile in node.profiles.profile %}
+##### {{ profile }}
+##### Custom Profile Count: {{ profile.customProfilesCount }}
+##### Endpoint Types: {{ profile.endpointTypes }}
+##### Total Profiles Count: {{ profile.totalProfilesCount }}
+##### Unique Endpoints Count: {{ profile.uniqueEndpointsCount }}
+##### Unknown Endpoints Count: {{ profile.unknownEndpointsCount }}
+##### Total Endpoints Count: {{ profile.totalEndpointsCount }}
+##### Uknown Endpoints Percentage: {{ profile.unknownEndpointsPercentage }}
+{%-     endfor %}
+{%- endfor %}
+## Deployment Information
+### Deployment ID: {{ deploymentInfoJSON.deploymentInfo.deploymentID }}
+### Node List
+{%- for node in deploymentInfoJSON.deploymentInfo.nodeList.nodeAndNodeCountAndCountInfo %}
+#### {{ node.name }}
+##### Declared Type: {{ node.declaredType }}
+##### Scope: {{ node.scope }}
+{%- endfor %}
+## NAD Information
+### Deployment ID: {{ deploymentInfoJSON.nadInfo.deploymentID }}
+### Node List
+{%- for node in deploymentInfoJSON.nadInfo.nodeList.nodeAndScope %}
+{%-     if node == "deployment" %}
+#### {{ node }}
+{%-     endif %}
+{%-     for item in node.content %}
+#### {{ item.name }}
+##### Declared Type: {{ item.declaredType }}
+##### Scope: {{ item.scope }}
+##### Global Scope: {{ item.globalScope }}
+##### Type Substituted: {{ item.typeSubstituted }}
+##### Value Name: {{ item.value.name }}
+##### Cisco Provided: {{ item.value.isCiscoProvided }}
+##### Default Profile: {{ item.value.isDefProfile }}
+##### TACACS Supported: {{ item.value.isTacacsSupported }}
+##### RADIUS Supported: {{ item.value.isRadiusSupported }}
+##### TrustSec Supported: {{ item.value.isTrustSecSupported }}
+##### Active NAD Count: {{ item.value.activeNADCount }}
+##### Total NAD Count: {{ item.value.totalNADCount }}
+{%-     endfor %}
+{%- endfor %}
+## MDM Information
+### Deployment ID: {{ deploymentInfoJSON.mdmInfo.deploymentID }}
+### Active MD Servers: {{ deploymentInfoJSON.mdmInfo.activeMdmServersCount }}
+### Active Desktop MDM Servers: {{ deploymentInfoJSON.mdmInfo.activeDesktopMdmServersCount }}
+### Active Mobile MDM Servers: {{ deploymentInfoJSON.mdmInfo.activeMobileMdmServersCount }}
+## License Information
+### Deployment ID: {{ deploymentInfoJSON.licensesInfo.deploymentID }}
+### Node List Node: deployment
+{%- for node in deploymentInfoJSON.licensesInfo.nodeList.nodeAndScope %}
+{%-     for item in node.content %}
+#### Name: {{ item.name }}
+##### Declared Type: {{ item.declaredType }}
+##### Scope: {{ item.scope }}
+##### Global Scope: {{ item.globalScope }}
+##### Type Substituted: {{ item.typeSubstituted }}
+{%-     endfor %}
+{%- endfor %}

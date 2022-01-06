@@ -1,0 +1,6 @@
+# Profiler Profiles
+{%- for profile in profiler %}
+## {{ profile.ProfilerProfile.name }}
+### ID: {{ profile.ProfilerProfile.id }}
+### Description: {{ profile.ProfilerProfile.description }}
+{%- endfor %}
