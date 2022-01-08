@@ -483,7 +483,7 @@ parsed_output = profiles_template.render(profiler = profiler)
 # Save the markdown file
 # -------------------------
 
-with open("Output/Nodes.md", "w") as fh:
+with open("Output/Profiles.md", "w") as fh:
     fh.write(parsed_output)               
     fh.close()
 
