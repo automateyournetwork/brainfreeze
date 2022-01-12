@@ -1,6 +1,6 @@
-{{Use Case Title}}
+Brainfreeze
 =====================================
-{{Use Case SubTitle}
+Mind Maps for Cisco Identity Services Engine
 
 Use the Cisco Identity Services Engine (ISE) External RESTful Service (ERS) and Monitoring and Troubleshooting (MnT) Application Programmable Interfaces (APIs) to create 
 valid markdown files which then in turn can be rendered as mind maps using the VS Code markmap extension 
