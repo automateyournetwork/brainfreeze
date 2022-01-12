@@ -35,6 +35,14 @@ mnt = "10.10.20.70:443"
 
 ```
 
+Update your target ISE Credentials (find and replace)
+
+```python
+
+auth=('admin', 'C1sco12345!')
+
+```
+
 Change into the MindMaps folder and run the BrainFreeze.py file
 
 ```python
