@@ -1,0 +1,5 @@
+Please install the following required libraries
+
+pip install requests
+pip install jinja2
+pip install xmltodict
